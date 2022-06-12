@@ -1,0 +1,51 @@
+.AppSwitch {
+  display: inline-block;
+  height: 1.25rem;
+  position: relative;
+  margin: 0 0.75rem;
+  width: 2.75rem;
+}
+
+.AppSwitch input {
+  height: 0;
+  opacity: 0;
+  width: 0;
+}
+
+.AppSwitch .Slider {
+  background-color: var(--switch-background);
+  border-radius: 0.75rem;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 4ms;
+  -webkit-transition: 4ms;
+}
+
+.AppSwitch .Slider::before {
+  background-color: var(--accent);
+  border-radius: 50%;
+  bottom: -0.25rem;
+  content: "";
+  height: 1.75rem;
+  left: -0.25rem;
+  position: absolute;
+  transition: 4ms;
+  width: 1.75rem;
+  -webkit-transition: 4ms;
+}
+
+.Celsius:before {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.Fahrenheit:before {
+  -webkit-transform: translateX(1.75rem);
+  -ms-transform: translateX(1.75rem);
+  transform: translateX(1.75rem);
+}

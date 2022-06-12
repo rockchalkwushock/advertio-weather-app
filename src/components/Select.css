@@ -1,0 +1,8 @@
+.AppSelect {
+  background-color: var(--select-background);
+  border: unset;
+  box-shadow: 0.0625rem 0.1875rem 0.1875rem rgba(0, 0, 0, 0.5);
+  min-height: 1.25rem;
+  outline: none;
+  padding: 0.5rem 0.75rem;
+}

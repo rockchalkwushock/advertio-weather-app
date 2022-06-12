@@ -1,13 +1,26 @@
-body {
+:root {
+  --accent: rgb(228, 108, 80);
+  --background: rgb(99, 125, 138);
+  --foreground: rgb(255, 255, 255);
+  --font-size: 16px;
+  --header-background: rgb(71,90, 99);
+  --select-background: rgb(250, 250, 250);
+  --switch-background: rgb(89, 105, 113);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-size: var(--font-size);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }

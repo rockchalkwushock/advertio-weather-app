@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { Header } from './components/Header'
+import { Presentation } from './components/Presentation'
+import { Toolbar } from './components/Toolbar'
+import { useCityWeather } from './hooks/useCityWeather'
 
 function App() {
+  const { isFetched, isFetching, onChange, onToggle, response, scale } =
+    useCityWeather()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className="AppContent">
+        <Toolbar onChange={onChange} onToggle={onToggle} scale={scale} />
+        <Presentation
+          data={response}
+          isFetched={isFetched}
+          isFetching={isFetching}
+          scale={scale}
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

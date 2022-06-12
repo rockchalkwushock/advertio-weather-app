@@ -1,0 +1,53 @@
+.Presentation {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-height: 25rem;
+  width: 100%;
+}
+
+.Presentation .Temperature h1 {
+  font-size: 8rem;
+  font-weight: 700;
+  padding: 1rem 0 2rem 0;
+}
+
+.Presentation .Icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.Presentation .Icon img {
+  height: 6.25rem;
+  width: 6.25rem;
+}
+
+.Presentation .SunriseAndSunset {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 22rem;
+}
+
+.Presentation .SunriseAndSunset h2 {
+  font-weight: 400;
+}
+
+.Presentation .Loader {
+  animation: spin infinite 4s linear;
+  height: 5rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

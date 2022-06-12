@@ -1,0 +1,13 @@
+.AppToolbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.AppToolbar .ScaleSwitcher {
+  align-items: center;
+  display: flex;
+  font-size: 1.25rem;
+}
