@@ -24,21 +24,21 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v2
         with:
-          cache: 'npm'
+          cache: 'yarn'
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: npm install
+        run: yarn install
         env:
           CI: true
 
       - name: Running Test Suite
-        run: npm run test
+        run: yarn run test
         env:
           NODE_ENV: test
 
       - name: Build
-        run: npm run build
+        run: yarn run build
         env:
           NODE_ENV: production
 
