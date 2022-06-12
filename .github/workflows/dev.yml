@@ -1,0 +1,57 @@
+name: Development
+
+on:
+  pull_request:
+    branches:
+      - 'staging'
+    types:
+      - "edited"
+      - "opened"
+      - "synchronize"
+
+jobs:
+  review_code:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['16.x']
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          cache: 'npm'
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: npm install
+        env:
+          CI: true
+
+      - name: Running Test Suite
+        run: npm run test
+        env:
+          NODE_ENV: test
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy
+        uses: amondnet/vercel-action@v20.0.0
+        with:
+          github-comment: true
+          github-token: ${{ github.token }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
