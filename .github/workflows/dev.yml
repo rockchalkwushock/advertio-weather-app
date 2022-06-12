@@ -1,13 +1,9 @@
 name: Development
 
 on:
-  pull_request:
+  push:
     branches:
-      - 'staging'
-    types:
-      - "edited"
-      - "opened"
-      - "synchronize"
+      - 'production'
 
 jobs:
   review_code:
