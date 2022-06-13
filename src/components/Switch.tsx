@@ -16,7 +16,7 @@ export const Switch: React.FC<Props> = ({ onToggle, scale }) => {
       onClick={() => onToggle(scale === 'C' ? 'F' : 'C')}
     >
       <input
-        checked={scale === 'C' ? true : undefined}
+        checked={scale === 'C' ? true : false}
         onChange={() => onToggle(scale === 'C' ? 'F' : 'C')}
         style={{
           transform: `translateX(${scale === 'C' ? '0' : '1.75rem'})`,
