@@ -14,9 +14,10 @@ type Action = {
 
 type State = {
   city: City
+  data?: CityWeatherData
+  error?: CityWeatherError
   isFetching: boolean
   isFetched: boolean
-  response?: CityWeatherData | CityWeatherError
 }
 
 type UseCityWeather = () => State & {
@@ -49,19 +50,19 @@ export const useCityWeather: UseCityWeather = () => {
     // If already fetched
     if (state.isFetched && !state.isFetching) return
     if (!state.isFetched && state.isFetching) {
-      fetchWeatherForCity(state.city)
-        .then(data => {
+      fetchWeatherForCity(state.city).then(res => {
+        if ((res as CityWeatherError).status) {
           dispatch({
-            payload: { response: data },
-            type: 'FETCHED',
-          })
-        })
-        .catch(err => {
-          dispatch({
-            payload: { response: err },
+            payload: { error: res as CityWeatherError },
             type: 'ERROR',
           })
+          return
+        }
+        dispatch({
+          payload: { data: res as CityWeatherData },
+          type: 'FETCHED',
         })
+      })
     }
   }, [state.city, state.isFetched, state.isFetching])
 
@@ -75,9 +76,10 @@ export const useCityWeather: UseCityWeather = () => {
       dispatch({
         payload: {
           city,
+          data: undefined,
+          error: undefined,
           isFetched: false,
           isFetching: true,
-          response: undefined,
         },
         type: 'FETCHING',
       })

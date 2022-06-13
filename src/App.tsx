@@ -6,14 +6,17 @@ import { Toolbar } from './components/Toolbar'
 import { useCityWeather } from './hooks/useCityWeather'
 
 function App() {
-  const { isFetched, isFetching, onChange, response } = useCityWeather()
+  const { city, data, error, isFetched, isFetching, onChange } =
+    useCityWeather()
   return (
     <div className="App">
       <Header />
       <div className="AppContent">
         <Toolbar onChange={onChange} />
         <Presentation
-          data={response}
+          city={city}
+          data={data}
+          error={error}
           isFetched={isFetched}
           isFetching={isFetching}
         />
