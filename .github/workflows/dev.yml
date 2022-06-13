@@ -32,6 +32,9 @@ jobs:
         env:
           CI: true
 
+      - name: Type Check
+        run: yarn run type-check
+
       - name: Running Test Suite
         run: yarn run test
         env:
