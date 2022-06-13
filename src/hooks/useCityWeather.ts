@@ -6,11 +6,10 @@ import {
 } from '../services/owm'
 
 export type City = 'Bogota' | 'Lisbon' | 'Shanghai'
-export type TemperatureScale = 'C' | 'F'
 
 type Action = {
   payload: Partial<State>
-  type: 'ERROR' | 'FETCHING' | 'FETCHED' | 'CHANGE_SCALE'
+  type: 'ERROR' | 'FETCHING' | 'FETCHED'
 }
 
 type State = {
@@ -18,18 +17,14 @@ type State = {
   isFetching: boolean
   isFetched: boolean
   response?: CityWeatherData | CityWeatherError
-  scale: TemperatureScale
 }
 
 type UseCityWeather = () => State & {
   onChange: (city: City) => void
-  onToggle: (scale: TemperatureScale) => void
 }
 
 const reducer: React.Reducer<State, Action> = (state, { payload, type }) => {
   switch (type) {
-    case 'CHANGE_SCALE':
-      return { ...state, ...payload }
     case 'ERROR':
       return { ...state, ...payload, isFetching: false, isFetched: true }
     case 'FETCHED':
@@ -45,7 +40,6 @@ const initialState: State = {
   city: 'Bogota',
   isFetched: false,
   isFetching: true,
-  scale: 'C',
 }
 
 export const useCityWeather: UseCityWeather = () => {
@@ -91,12 +85,8 @@ export const useCityWeather: UseCityWeather = () => {
     [state.city, state.isFetching]
   )
 
-  const onToggle = (scale: TemperatureScale) =>
-    dispatch({ payload: { scale }, type: 'CHANGE_SCALE' })
-
   return {
     ...state,
     onChange,
-    onToggle,
   }
 }

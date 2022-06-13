@@ -5,21 +5,20 @@ import loader from '../loader.svg'
 import { CityWeatherData, CityWeatherError } from '../services/owm'
 import { toHumanReadableTime } from '../utils/datetime'
 import { toCelsius, toFahrenheit } from '../utils/temperature'
-import { TemperatureScale } from '../hooks/useCityWeather'
+import { useScale } from '../contexts/ScaleContext'
 
 type Props = {
   data?: CityWeatherData | CityWeatherError
   isFetched: boolean
   isFetching: boolean
-  scale: TemperatureScale
 }
 
 export const Presentation: React.FC<Props> = ({
   data,
   isFetched,
   isFetching,
-  scale,
 }) => {
+  const { scale } = useScale()
   return (
     <div className="Presentation">
       {isFetching && <img alt="Loading..." className="Loader" src={loader} />}

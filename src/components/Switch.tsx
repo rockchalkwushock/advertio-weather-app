@@ -1,23 +1,15 @@
 import React from 'react'
-import { TemperatureScale } from '../hooks/useCityWeather'
+import { useScale } from '../contexts/ScaleContext'
 
 import './Switch.css'
 
-type Props = {
-  onToggle: (scale: TemperatureScale) => void
-  scale: TemperatureScale
-}
-
-export const Switch: React.FC<Props> = ({ onToggle, scale }) => {
+export const Switch = () => {
+  const { onToggleScale, scale } = useScale()
   return (
-    <label
-      className="AppSwitch"
-      htmlFor="switch"
-      onClick={() => onToggle(scale === 'C' ? 'F' : 'C')}
-    >
+    <label className="AppSwitch" htmlFor="switch" onClick={onToggleScale}>
       <input
         checked={scale === 'C' ? true : false}
-        onChange={() => onToggle(scale === 'C' ? 'F' : 'C')}
+        onChange={onToggleScale}
         style={{
           transform: `translateX(${scale === 'C' ? '0' : '1.75rem'})`,
         }}
